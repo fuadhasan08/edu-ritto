@@ -1,7 +1,9 @@
 import useFetch from '../hooks/useFetch'
 
 const Home = () => {
-  const fetchedData = useFetch('http://localhost/eduritto/wp-json/wp/v2/pages')
+  const fetchedData = useFetch(
+    'https://demo.ritto360.com/eduritto/wp-json/wp/v2/pages'
+  )
 
   const homeData = fetchedData.find((item) => item.page_type === 'home')
 

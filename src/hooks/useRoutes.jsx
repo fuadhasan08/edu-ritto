@@ -6,7 +6,7 @@ const usePagesRoutes = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost/eduritto/wp-json/mycustomapi/v1/menu')
+      .get('https://demo.ritto360.com/eduritto/wp-json/mycustomapi/v1/menu')
       .then((res) => {
         setMenuData(res.data)
       })
