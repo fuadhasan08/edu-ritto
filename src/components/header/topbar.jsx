@@ -31,7 +31,7 @@ const TopBar = () => {
       </div>
       <div className='text-right relative sm:hidden'>
         <p
-          className='inline-flex items-center text-sm'
+          className='inline-flex items-center text-sm '
           onClick={() => {
             setOpen((old) => !old)
           }}
