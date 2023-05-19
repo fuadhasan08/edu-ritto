@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { FaSquare } from 'react-icons/fa'
 
 const RightSidebar = () => {
@@ -13,6 +14,7 @@ const RightSidebar = () => {
           direction='up'
           scrollamount='2'
           className='space-y-1.5 px-1'
+          id='markq'
         >
           <li className='cursor-pointer bg-bg rounded-sm px-2 py-0.5 flex  gap-x-2 text-sm text-text group'>
             <FaSquare className='text-10px mt-1' />

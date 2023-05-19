@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import usePagesRoutes from '../../hooks/useRoutes'
 import LogoPanel from './logopanel'
 import TopBar from './topbar'
+import { Link } from 'react-router-dom'
 
 const MenuItem = () => {
   const menuData = usePagesRoutes()
@@ -66,19 +67,25 @@ const MenuItem = () => {
                 {menuData.map((item) => {
                   const { id, title, url, submenu } = item
 
+                  let url2 = url
+
+                  if (url2 == 'page/') {
+                    url2 = ''
+                  }
+
                   return !submenu && submenu == undefined ? (
                     <li className='group' key={id}>
-                      <a
-                        href={url}
+                      <Link
+                        to={url2}
                         className='flex items-center justify-between py-3 font-display text-sm text-white lg:px-6 bg-primary rounded-sm'
                       >
                         {title}
-                      </a>
+                      </Link>
                     </li>
                   ) : (
                     <li className='js-nav-dropdown group relative' key={id}>
-                      <a
-                        href={url}
+                      <Link
+                        to={url2}
                         className='dropdown-toggle flex items-center justify-between py-3 font-display text-sm text-white lg:px-6 bg-primary rounded-sm'
                         id='navDropdown-4'
                         aria-expanded='false'
@@ -98,7 +105,7 @@ const MenuItem = () => {
                             <path d='M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z' />
                           </svg>
                         </i>
-                      </a>
+                      </Link>
                       <ul
                         className='dropdown-menu group-hover:visible lg:invisible left-0 top-[85%] z-10 hidden min-w-[200px] gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover:opacity-100 dark:bg-jacarta-800 lg:absolute lg:grid lg:translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl lg:group-hover:translate-y-2'
                         aria-labelledby='navDropdown-4'
@@ -109,14 +116,14 @@ const MenuItem = () => {
                           if (submenu == undefined) {
                             return (
                               <li key={id}>
-                                <a
-                                  href={url}
+                                <Link
+                                  to={url}
                                   className='flex items-center rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600'
                                 >
                                   <span className='font-display text-sm text-body dark:text-body'>
                                     {title}
                                   </span>
-                                </a>
+                                </Link>
                               </li>
                             )
                           } else {
@@ -125,8 +132,8 @@ const MenuItem = () => {
                                 key={id}
                                 className='js-nav-dropdown group/child relative'
                               >
-                                <a
-                                  href={url}
+                                <Link
+                                  to={url}
                                   className='dropdown-toggle flex items-center justify-between py-3.5 font-display text-base text-body hover:text-accent focus:text-accent dark:text-body dark:hover:text-accent dark:focus:text-accent lg:px-5'
                                   id='navDropdown-4'
                                   aria-expanded='false'
@@ -146,7 +153,7 @@ const MenuItem = () => {
                                       <path d='M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z' />
                                     </svg>
                                   </i>
-                                </a>
+                                </Link>
                                 <ul
                                   className='dropdown-menu group-hover/child:visible lg:invisible -left-52 top-0 z-10 hidden min-w-[200px] gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover/child:opacity-100 dark:bg-jacarta-800 lg:absolute lg:grid lg:translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl lg:group-hover/child:translate-y-2'
                                   aria-labelledby='navDropdown-4'
@@ -155,14 +162,14 @@ const MenuItem = () => {
                                     const { id, title, url } = item
                                     return (
                                       <li key={id}>
-                                        <a
-                                          href={url}
+                                        <Link
+                                          to={url}
                                           className='flex items-center rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600'
                                         >
                                           <span className='font-display text-sm text-body dark:text-body'>
                                             {title}
                                           </span>
-                                        </a>
+                                        </Link>
                                       </li>
                                     )
                                   })}
