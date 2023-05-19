@@ -8,12 +8,10 @@ const Home = () => {
   const homeData = fetchedData.find((item) => item.page_type === 'home')
 
   return (
-    <>
-      <div
-        className='px-2 lg:px-0'
-        dangerouslySetInnerHTML={{ __html: homeData?.content?.rendered }}
-      ></div>
-    </>
+    <div
+      className='px-2 lg:px-0'
+      dangerouslySetInnerHTML={{ __html: homeData?.content?.rendered }}
+    ></div>
   )
 }
 
