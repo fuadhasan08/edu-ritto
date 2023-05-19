@@ -2,7 +2,7 @@ const LogoPanel = () => {
   return (
     <div className='flex items-center sm:max-h-52 h-full sm:flex-nowrap flex-wrap sm:text-left text-center justify-center sm:justify-start'>
       <img
-        src='./assets/akm.png'
+        src='/assets/akm.png'
         className='h-auto w-full max-w-[200px] text-center p-5'
         alt='Site Logo'
       />

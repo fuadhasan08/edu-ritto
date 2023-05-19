@@ -2,10 +2,13 @@ import useFetch from '../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 
 const Pages = () => {
-  const fetchedData = useFetch('https://demo.ritto360.com/wp-json/wp/v2/pages')
+  const fetchedData = useFetch(
+    'https://demo.ritto360.com/eduritto/wp-json/wp/v2/pages'
+  )
   const { slug } = useParams()
 
   const filteredfetchedData = fetchedData.filter((item) => item.page_type == '')
+
   const pageData = filteredfetchedData.find((item) => item.slug === slug)
 
   return (

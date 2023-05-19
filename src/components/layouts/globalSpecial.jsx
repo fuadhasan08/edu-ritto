@@ -1,12 +1,11 @@
 import React from 'react'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import GlobalHeader from '../header/header'
 import LeftSidebar from '../sidebar/leftsidebar'
 import RightSidebar from '../sidebar/rightsidebar'
 import GlobalFooter from '../footer/footer'
-import useFetch from '../../hooks/useFetch'
 
-const GlobalLayout = () => {
+const GlobalSpecial = () => {
   return (
     <div className='max-w-[1250px] mx-auto bg-white w-full'>
       <GlobalHeader />
@@ -20,4 +19,4 @@ const GlobalLayout = () => {
   )
 }
 
-export default GlobalLayout
+export default GlobalSpecial

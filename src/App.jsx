@@ -7,14 +7,15 @@ const App = () => {
   const router = createBrowserRouter([
     {
       element: <GlobalLayout />,
+      path: '/',
       children: [
         {
           path: '/',
           element: <Home />,
         },
-        { path: '/page/:slug', element: <Pages /> },
+        { path: 'page/:slug', element: <Pages /> },
       ],
-      errorElement: 'Error',
+      errorElement: '<div>error</div>',
     },
   ])
 

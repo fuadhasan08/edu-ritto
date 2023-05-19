@@ -9,7 +9,7 @@ const Home = () => {
 
   return (
     <div
-      className='px-2 lg:px-0'
+      className='px-2 lg:px-0 flex-1'
       dangerouslySetInnerHTML={{ __html: homeData?.content?.rendered }}
     ></div>
   )
