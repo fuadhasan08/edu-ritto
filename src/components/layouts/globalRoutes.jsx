@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom'
 import GlobalHeader from '../header/header'
 import LeftSidebar from '../sidebar/leftsidebar'
 import RightSidebar from '../sidebar/rightsidebar'
+import GlobalFooter from '../footer/footer'
 
 const GlobalLayout = () => {
   return (
@@ -13,6 +14,7 @@ const GlobalLayout = () => {
         <Outlet />
         <RightSidebar />
       </div>
+      <GlobalFooter />
     </div>
   )
 }
