@@ -7,28 +7,25 @@ const TopBar = () => {
 
   return (
     <div className='text-white bg-primary px-4 sm:py-1 py-2 sm:block flex justify-between items-center'>
-      <div className='sm:flex justify-between flex-wrap gap-y-2 sm:gap-x-2 hidden'>
+      <div className='flex justify-between flex-wrap gap-y-2 sm:gap-x-2'>
         <div className='flex items-center gap-x-2'>
           <FaCheck />
-          <p className='font-eng text-[18px]'>EIIN: 11797</p>
+          <p className='font-eng text-sm sm:text-[18px]'>EIIN: 11797</p>
         </div>
-        <div className='flex items-center gap-x-2'>
+        <div className='hidden sm:flex items-center gap-x-2'>
           <FaRegEnvelope />
           <p className='font-eng text-[18px]'>example@gmail.com</p>
         </div>
-        <div className='flex items-center gap-x-2'>
+        <div className='hidden sm:flex items-center gap-x-2'>
           <FaPhoneAlt />
           <p className='font-eng text-[18px]'>+880170390303</p>
         </div>
-        <div className='flex items-center gap-x-2'>
+        <div className='hidden sm:flex items-center gap-x-2'>
           <FaFacebook />
           <p className='font-eng text-[18px]'>Ritto360</p>
         </div>
       </div>
-      <div className='flex items-center gap-x-2 pb-1 sm:hidden'>
-        <FaCheck />
-        <p className='font-eng text-sm hover:text-primary'>EIIN: 11797</p>
-      </div>
+
       <div className='text-right relative sm:hidden'>
         <p
           className='inline-flex items-center text-sm '

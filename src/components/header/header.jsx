@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import usePagesRoutes from '../../hooks/useRoutes'
 import LogoPanel from './logopanel'
 import TopBar from './topbar'
@@ -6,12 +6,33 @@ import TopBar from './topbar'
 const MenuItem = () => {
   const menuData = usePagesRoutes()
   const [open, setOpen] = useState(false)
+  const [sticky, setSticky] = useState(false)
+
+  useEffect(() => {
+    const listener = () => {
+      if (window.scrollY >= 210) {
+        setSticky(true)
+      } else {
+        setSticky(false)
+      }
+    }
+
+    window.addEventListener('scroll', listener)
+
+    return () => {
+      window.removeEventListener('scroll', listener)
+    }
+  }, [])
 
   return (
     <>
       <TopBar />
       <LogoPanel />
-      <header className='js-page-header z-20 w-full bg-white px-4 justify-center sm:-mt-4 mt-4'>
+      <header
+        className={`js-page-header z-20 w-full bg-white px-4 justify-center sm:-mt-4 mt-4 transition-all duration-1000 ${
+          sticky ? '!sticky top-0 inset-x-0 ' : ''
+        }`}
+      >
         <div className='flex items-center lg:justify-center justify-between border-b border-primary py-4'>
           <div
             className={`js-mobile-menu invisible lg:visible fixed inset-x-0 top-0 z-10  items-center bg-primary opacity-0 lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent ${

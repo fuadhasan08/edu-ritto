@@ -18,15 +18,19 @@ module.exports = {
     extend: {
       colors: {
         body: '#212529',
-        title: '#222222',
+        title: '#333333',
         primary: '#2E8B57',
         secondary: '#66CDAA',
         bg: 'rgb(232, 255, 247)',
         bodyBg: '#d0d0d0',
+        bgCard: 'rgba(0,0,0,.03)',
+        brderCard: 'rgba(0,0,0,.125)',
       },
       fontSize: {
-        '14px': '14px',
-        '32px': '32px',
+        '10px': '10px',
+        '1.75rem': '1.75rem',
+        '2rem': '2rem',
+        '2.5rem': '2.5rem',
         '50px': '50px',
         '54px': '54px',
       },

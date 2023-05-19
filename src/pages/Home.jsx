@@ -9,10 +9,10 @@ const Home = () => {
 
   return (
     <>
-      <p
-        className='text-body mt-5'
+      <div
+        className='px-2 lg:px-0'
         dangerouslySetInnerHTML={{ __html: homeData?.content?.rendered }}
-      ></p>
+      ></div>
     </>
   )
 }

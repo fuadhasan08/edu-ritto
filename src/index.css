@@ -4,7 +4,42 @@
 
 @layer base {
   body {
-    @apply text-body font-main bg-bodyBg;
+    @apply text-body font-main bg-bodyBg leading-6 text-base font-normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-bold text-title leading-5;
+  }
+
+  h5,
+  h6 {
+    @apply font-medium text-title leading-5;
+  }
+
+  h1 {
+    @apply text-2.5rem;
+  }
+  h2 {
+    @apply text-2rem;
+  }
+  h3 {
+    @apply text-1.75rem;
+  }
+  h4 {
+    @apply text-2xl;
+  }
+  h5 {
+    @apply text-xl;
+  }
+  h6 {
+    @apply text-base;
+  }
+
+  hr {
+    @apply bg-primary h-0.5 mb-2;
   }
 }
 
