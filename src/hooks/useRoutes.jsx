@@ -6,14 +6,14 @@ const usePagesRoutes = () => {
 
   useEffect(() => {
     axios
-      .get('https://demo.ritto360.com/eduritto/wp-json/mycustomapi/v1/menu')
+      .get(`${import.meta.env.VITE_API_URI}wp-json/mycustomapi/v1/menu`)
       .then((res) => {
         setMenuData(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
-  }, [menuData])
+  }, [])
 
   return menuData
 }

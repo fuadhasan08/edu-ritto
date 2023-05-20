@@ -4,7 +4,6 @@ import GlobalHeader from '../header/header'
 import LeftSidebar from '../sidebar/leftsidebar'
 import RightSidebar from '../sidebar/rightsidebar'
 import GlobalFooter from '../footer/footer'
-import useFetch from '../../hooks/useFetch'
 
 const GlobalLayout = () => {
   return (

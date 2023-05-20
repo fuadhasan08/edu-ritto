@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 const Pages = () => {
   const fetchedData = useFetch(
-    'https://demo.ritto360.com/eduritto/wp-json/wp/v2/pages'
+    `${import.meta.env.VITE_API_URI}wp-json/wp/v2/pages`
   )
   const { slug } = useParams()
 

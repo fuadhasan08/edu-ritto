@@ -6,14 +6,14 @@ const useSlides = () => {
 
   useEffect(() => {
     axios
-      .get('https://demo.ritto360.com/eduritto/wp-json/custom/v1/slides')
+      .get(`${import.meta.env.VITE_API_URI}wp-json/custom/v1/slides`)
       .then((res) => {
         setSlidesData(res.data)
       })
       .catch((err) => {
         console.log(err)
       })
-  }, [slidesData])
+  }, [])
 
   return slidesData
 }

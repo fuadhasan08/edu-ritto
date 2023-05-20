@@ -3,7 +3,7 @@ import { FaSquare } from 'react-icons/fa'
 
 const LeftSidebar = () => {
   const fetchedData = useFetch(
-    'https://demo.ritto360.com/eduritto/wp-json/mycustomapi/v1/menu2'
+    `${import.meta.env.VITE_API_URI}wp-json/mycustomapi/v1/menu2`
   )
 
   return (
