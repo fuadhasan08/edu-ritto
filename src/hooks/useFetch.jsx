@@ -6,7 +6,7 @@ const useFetch = (url) => {
 
   useEffect(() => {
     axios
-      .get(url)
+      .get(`${import.meta.env.VITE_API_URI}/${url}`)
       .then((res) => {
         setFetchedData(res.data)
       })

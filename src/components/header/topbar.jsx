@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { FaCheck, FaRegEnvelope, FaPhoneAlt, FaFacebook } from 'react-icons/fa'
 import { FiInfo } from 'react-icons/fi'
-import useOptions from '../../hooks/useOptions'
+import useFetch from '../../hooks/useFetch'
 
 const TopBar = () => {
   const [open, setOpen] = useState(false)
 
-  const optionsData = useOptions()
+  const fetchedData = useFetch('wp-json/redux/v1/data')
 
-  const { eiin_no, email, phone, social } = optionsData
+  const { eiin_no, email, phone, social } = fetchedData
 
   return (
     <div className='text-white bg-primary px-4 sm:py-1 py-2 sm:block flex justify-between items-center'>

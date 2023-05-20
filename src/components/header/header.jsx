@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import usePagesRoutes from '../../hooks/useRoutes'
 import LogoPanel from './logopanel'
 import TopBar from './topbar'
 import { Link } from 'react-router-dom'
+import useFetch from '../../hooks/useFetch'
 
 const MenuItem = () => {
-  const menuData = usePagesRoutes()
+  const fetchedData = useFetch('wp-json/mycustomapi/v1/menu')
+
   const [open, setOpen] = useState(false)
   const [sticky, setSticky] = useState(false)
 
@@ -64,7 +65,7 @@ const MenuItem = () => {
 
             <nav className='navbar w-full mt-24 mb-8 lg:mt-0 lg:mb-0'>
               <ul className='flex flex-col lg:flex-row gap-3 flex-wrap'>
-                {menuData.map((item) => {
+                {fetchedData.map((item) => {
                   const { id, title, url, submenu } = item
 
                   let url2 = url

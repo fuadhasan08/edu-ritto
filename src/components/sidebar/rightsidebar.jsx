@@ -1,10 +1,10 @@
 import { FaSquare } from 'react-icons/fa'
-import useOptions from '../../hooks/useOptions'
+import useFetch from '../../hooks/useFetch'
 
 const RightSidebar = () => {
-  const optionsData = useOptions()
+  const fetchedData = useFetch('wp-json/redux/v1/data')
 
-  const { sovapoti, principle, important_links } = optionsData
+  const { sovapoti, principle, important_links } = fetchedData
 
   return (
     <div className='px-2 lg:pr-2 lg:pl-0 space-y-5 lg:text-left text-center lg:col-span-2 lg:max-w-[200px] w-full lg:block flex justify-center flex-col'>

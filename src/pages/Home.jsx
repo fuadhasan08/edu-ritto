@@ -17,9 +17,7 @@ const Home = () => {
     cssEase: 'ease',
   }
 
-  const fetchedData = useFetch(
-    `${import.meta.env.VITE_API_URI}wp-json/wp/v2/pages`
-  )
+  const fetchedData = useFetch(`wp-json/wp/v2/pages`)
 
   const homeData = fetchedData.find((item) => item.page_type === 'home')
 

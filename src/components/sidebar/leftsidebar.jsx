@@ -2,9 +2,7 @@ import useFetch from '../../hooks/useFetch'
 import { FaSquare } from 'react-icons/fa'
 
 const LeftSidebar = () => {
-  const fetchedData = useFetch(
-    `${import.meta.env.VITE_API_URI}wp-json/mycustomapi/v1/menu2`
-  )
+  const fetchedData = useFetch(`wp-json/mycustomapi/v1/menu2`)
 
   return (
     <div className='px-2 lg:pr-0 lg:pl-2 lg:col-span-2'>
