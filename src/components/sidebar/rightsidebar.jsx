@@ -7,7 +7,7 @@ const RightSidebar = () => {
   const { sovapoti, principle, important_links } = optionsData
 
   return (
-    <div className='px-2 lg:pr-2 lg:pl-0 space-y-5 lg:text-left text-center lg:col-span-2 lg:max-w-[200px] w-full flex justify-center flex-col'>
+    <div className='px-2 lg:pr-2 lg:pl-0 space-y-5 lg:text-left text-center lg:col-span-2 lg:max-w-[200px] w-full lg:block flex justify-center flex-col'>
       {/* নোটিশ বোর্ড */}
       <div className='rounded-lg border border-brderCard'>
         <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
@@ -112,11 +112,15 @@ const RightSidebar = () => {
             গুরুত্বপূর্ণ লিংক
           </h5>
           <ul className='space-y-1.5 px-1'>
-            {important_links.map((item, index) => {
+            {important_links?.map((item, index) => {
               const inputText = item
 
-              const title = inputText.match(/^([^\[]+)/)[1].trim()
-              const url = inputText.match(/\[([^]+)\]/)[1].trim()
+              let title, url
+
+              if (inputText) {
+                title = inputText.match(/^([^\[]+)/)[1].trim() || ''
+                url = inputText.match(/\[([^]+)\]/)[1].trim() || ''
+              }
 
               return (
                 <li
