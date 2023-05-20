@@ -10,7 +10,7 @@ const GlobalLayout = () => {
   return (
     <div className='max-w-[1250px] mx-auto bg-white w-full'>
       <GlobalHeader />
-      <div className='grid lg:grid-cols-12 pt-4 gap-5 lg:flex-nowrap flex-wrap'>
+      <div className='lg:grid lg:grid-cols-12 pt-4 gap-5'>
         <LeftSidebar />
         <Outlet />
         <RightSidebar />

@@ -26,14 +26,14 @@ const Home = () => {
   const slidesData = useSlides()
 
   return (
-    <div className='px-2 lg:px-0 flex-1 lg:col-span-8'>
+    <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-10 lg:mt-0'>
       {slidesData && (
         <Slider {...settings} className='cursor-pointer'>
           {slidesData?.map((item) => {
             const { id, src } = item
             return (
-              <div key={id} className='max-w-full h-500px'>
-                <img src={src} alt='' className='object-cover object-bottom' />
+              <div key={id} className='max-w-full md:max-h-500px '>
+                <img src={src} alt='' className='object-cover object-center' />
               </div>
             )
           })}
