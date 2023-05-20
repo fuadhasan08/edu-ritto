@@ -1,9 +1,13 @@
-import { useEffect } from 'react'
 import { FaSquare } from 'react-icons/fa'
+import useOptions from '../../hooks/useOptions'
 
 const RightSidebar = () => {
+  const optionsData = useOptions()
+
+  const { sovapoti, principle, important_links } = optionsData
+
   return (
-    <div className='lg:max-w-[200px] w-full px-2 lg:pr-2 lg:pl-0 space-y-5 lg:text-left text-center'>
+    <div className='px-2 lg:pr-2 lg:pl-0 space-y-5 lg:text-left text-center lg:col-span-2 lg:max-w-[200px] w-full flex justify-center flex-col'>
       {/* নোটিশ বোর্ড */}
       <div className='rounded-lg border border-brderCard'>
         <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
@@ -37,31 +41,37 @@ const RightSidebar = () => {
         </marquee>
       </div>
       {/* সভাপতি */}
-      <div className='rounded-lg border border-brderCard'>
-        <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
-          সভাপতি
-        </h5>
-        <div className='grid lg:h-[240px] lg:w-[190px] overflow-hidden justify-center lg:justify-start'>
-          <img
-            src='https://images.unsplash.com/photo-1616002411355-49593fd89721?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGFzc3BvcnQlMjBwaG90b3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80'
-            alt='vice principle'
-            className='h-auto w-[190px] object-cover '
-          />
+      {sovapoti?.url && (
+        <div className='rounded-lg border border-brderCard'>
+          <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
+            সভাপতি
+          </h5>
+
+          <div className='grid lg:h-[240px] lg:max-w-[190px] overflow-hidden justify-center lg:justify-start'>
+            <img
+              src={sovapoti?.url}
+              alt='vice principle'
+              className='h-auto max-w-[190px] object-cover object-center'
+            />
+          </div>
         </div>
-      </div>
+      )}
       {/* অধ্যক্ষ */}
-      <div className='rounded-lg border border-brderCard'>
-        <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
-          অধ্যক্ষ
-        </h5>
-        <div className='grid lg:h-[240px] lg:w-[190px] overflow-hidden justify-center lg:justify-start'>
-          <img
-            src='https://media.istockphoto.com/id/1315808211/photo/passport-photo-of-serious-brazilian-young-adult-man-with-braces.jpg?b=1&s=170667a&w=0&k=20&c=n3axGyWzgMdSOlF4rTmah7REFDUp6267MndSHdC6Ygc='
-            alt='principle'
-            className='h-auto w-[190px] object-cover '
-          />
+      {principle?.url && (
+        <div className='rounded-lg border border-brderCard'>
+          <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
+            অধ্যক্ষ
+          </h5>
+
+          <div className='grid lg:h-[240px] lg:max-w-[190px] overflow-hidden justify-center lg:justify-start'>
+            <img
+              src={principle.url}
+              alt='principle'
+              className='h-auto max-w-[190px] object-cover object-center'
+            />
+          </div>
         </div>
-      </div>
+      )}
       {/* ফেসবুক পেজ */}
       <div className='rounded-lg border border-brderCard'>
         <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
@@ -96,72 +106,37 @@ const RightSidebar = () => {
         </div>
       </div>
       {/* গুরুত্বপূর্ণ লিংক */}
-      <div className='rounded-lg border border-brderCard'>
-        <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
-          গুরুত্বপূর্ণ লিংক
-        </h5>
-        <ul
-          behavior='scroll'
-          direction='up'
-          scrollamount='2'
-          className='space-y-1.5 px-1'
-        >
-          <li className='cursor-pointer bg-bg rounded-sm flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর , ঢাকা
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              মাধ্যমিক ও উচ্চ শিক্ষা, ময়মনসিংহ অঞ্চল
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              শিক্ষা মন্ত্রণালয়
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              জাতীয় বিশ্ববিদ্যালয়
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              উন্মুক্ত বিশ্ববিদ্যালয়
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা বোর্ড, ঢাকা
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              মাধ্যমিক ও উচ্চমাধ্যমিক শিক্ষা বোর্ড, ময়মনসিংহ
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              ব্যানবেস
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm  flex  gap-x-2 text-sm text-text group p-1.5'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              শিক্ষক বাতায়ন
-            </a>
-          </li>
-        </ul>
-      </div>
+      {important_links && (
+        <div className='rounded-lg border border-brderCard'>
+          <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
+            গুরুত্বপূর্ণ লিংক
+          </h5>
+          <ul className='space-y-1.5 px-1'>
+            {important_links.map((item, index) => {
+              const inputText = item
+
+              const title = inputText.match(/^([^\[]+)/)[1].trim()
+              const url = inputText.match(/\[([^]+)\]/)[1].trim()
+
+              return (
+                <li
+                  className='cursor-pointer bg-bg rounded-sm flex  gap-x-2 text-sm text-text group p-1.5'
+                  key={index}
+                >
+                  <FaSquare className='text-10px mt-1' />
+                  <a
+                    href={url}
+                    className='group-hover:text-primary w-full'
+                    target='_blank'
+                  >
+                    {title}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   )
 }

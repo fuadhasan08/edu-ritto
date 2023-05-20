@@ -145,3 +145,11 @@ input[type='search']::-webkit-search-results-decoration {
 .tab-content > .active {
   @apply block;
 }
+
+.slick-dots {
+  @apply -bottom-30px;
+}
+
+.slick-dots li button:before {
+  @apply !text-primary text-10px;
+}

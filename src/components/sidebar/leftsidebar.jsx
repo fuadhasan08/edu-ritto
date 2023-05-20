@@ -7,7 +7,7 @@ const LeftSidebar = () => {
   )
 
   return (
-    <div className='lg:max-w-[200px] w-full px-2 lg:pr-- lg:pl-2'>
+    <div className='px-2 lg:pr-0 lg:pl-2 lg:col-span-2'>
       <ul className='space-y-1.5'>
         {fetchedData.map((item) => {
           const { id, title, url } = item

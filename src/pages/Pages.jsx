@@ -14,7 +14,7 @@ const Pages = () => {
   return (
     <div
       dangerouslySetInnerHTML={{ __html: pageData?.content?.rendered }}
-      className='flex-1'
+      className='flex-1 lg:col-span-8'
     ></div>
   )
 }
