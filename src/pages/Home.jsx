@@ -3,6 +3,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import useSlides from '../hooks/useSlides'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const settings = {
@@ -31,7 +32,13 @@ const Home = () => {
             const { id, src } = item
             return (
               <div key={id} className='max-w-full md:max-h-500px '>
-                <img src={src} alt='' className='object-cover object-center' />
+                <Link to='/gallery'>
+                  <img
+                    src={src}
+                    alt=''
+                    className='object-cover object-center'
+                  />
+                </Link>
               </div>
             )
           })}
