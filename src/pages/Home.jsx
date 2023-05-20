@@ -10,7 +10,7 @@ const Home = () => {
     dots: true,
     infinite: true,
     arrows: false,
-    speed: 800,
+    speed: 200,
     autoplaySpeed: 3000,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -27,16 +27,16 @@ const Home = () => {
   return (
     <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-10 lg:mt-0'>
       {slidesData && (
-        <Slider {...settings} className='cursor-pointer'>
+        <Slider {...settings} className='cursor-pointer rounded-md'>
           {slidesData?.map((item) => {
             const { id, src } = item
             return (
-              <div key={id} className='max-w-full md:max-h-500px '>
+              <div key={id} className='max-w-full md:max-h-500px rounded-md'>
                 <Link to='/gallery'>
                   <img
                     src={src}
                     alt=''
-                    className='object-cover object-center'
+                    className='object-cover object-center rounded-md'
                   />
                 </Link>
               </div>

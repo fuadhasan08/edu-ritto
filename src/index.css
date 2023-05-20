@@ -151,5 +151,5 @@ input[type='search']::-webkit-search-results-decoration {
 }
 
 .slick-dots li button:before {
-  @apply !text-primary text-10px;
+  @apply !text-primary text-sm;
 }
