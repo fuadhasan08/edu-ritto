@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply text-body font-main bg-bodyBg leading-6 text-base font-normal;
+    @apply text-body font-main bg-bodyBg leading-[30.6px] text-lg font-normal;
   }
 
   h1,
@@ -152,4 +152,9 @@ input[type='search']::-webkit-search-results-decoration {
 
 .slick-dots li button:before {
   @apply !text-primary text-sm;
+}
+
+.slick-dots li button:before {
+  content: '-' !important;
+  font-size: 70px;
 }

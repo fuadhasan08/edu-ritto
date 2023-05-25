@@ -1,37 +1,37 @@
-import { useEffect, useState } from 'react'
-import LogoPanel from './logopanel'
-import TopBar from './topbar'
-import { Link } from 'react-router-dom'
-import useFetch from '../../hooks/useFetch'
+import { useEffect, useState } from 'react';
+import LogoPanel from './logopanel';
+import TopBar from './topbar';
+import { Link } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
 const MenuItem = () => {
-  const fetchedData = useFetch('wp-json/mycustomapi/v1/menu')
+  const fetchedData = useFetch('wp-json/mycustomapi/v1/menu');
 
-  const [open, setOpen] = useState(false)
-  const [sticky, setSticky] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [sticky, setSticky] = useState(false);
 
   useEffect(() => {
     const listener = () => {
       if (window.scrollY >= 210) {
-        setSticky(true)
+        setSticky(true);
       } else {
-        setSticky(false)
+        setSticky(false);
       }
-    }
+    };
 
-    window.addEventListener('scroll', listener)
+    window.addEventListener('scroll', listener);
 
     return () => {
-      window.removeEventListener('scroll', listener)
-    }
-  }, [])
+      window.removeEventListener('scroll', listener);
+    };
+  }, []);
 
   return (
     <>
       <TopBar />
       <LogoPanel />
       <header
-        className={`js-page-header z-20 w-full bg-white px-4 justify-center sm:-mt-4 mt-4 transition-all duration-1000 ${
+        className={`js-page-header z-20 w-full bg-white px-2 justify-center sm:-mt-4 mt-4 transition-all duration-1000 ${
           sticky ? '!sticky top-0 inset-x-0 ' : ''
         }`}
       >
@@ -47,7 +47,7 @@ const MenuItem = () => {
                 className='js-mobile-close group ml-2 flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent'
                 aria-label='close mobile menu'
                 onClick={() => {
-                  setOpen(false)
+                  setOpen(false);
                 }}
               >
                 <svg
@@ -64,21 +64,21 @@ const MenuItem = () => {
             </div>
 
             <nav className='navbar w-full mt-24 mb-8 lg:mt-0 lg:mb-0'>
-              <ul className='flex flex-col lg:flex-row gap-3 flex-wrap'>
+              <ul className='flex flex-col lg:flex-row gap-1.5 flex-wrap'>
                 {fetchedData.map((item) => {
-                  const { id, title, url, submenu } = item
+                  const { id, title, url, submenu } = item;
 
-                  let url2 = url
+                  let url2 = url;
 
                   if (url2 == 'page/') {
-                    url2 = ''
+                    url2 = '';
                   }
 
                   return !submenu && submenu == undefined ? (
                     <li className='group' key={id}>
                       <Link
                         to={url2}
-                        className='flex items-center justify-between py-3 font-display text-sm text-white lg:px-6 bg-primary rounded-sm'
+                        className='flex items-center justify-between py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
                       >
                         {title}
                       </Link>
@@ -87,7 +87,7 @@ const MenuItem = () => {
                     <li className='js-nav-dropdown group relative' key={id}>
                       <Link
                         to={url2}
-                        className='dropdown-toggle flex items-center justify-between py-3 font-display text-sm text-white lg:px-6 bg-primary rounded-sm'
+                        className='dropdown-toggle flex items-center justify-between py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
                         id='navDropdown-4'
                         aria-expanded='false'
                         role='button'
@@ -112,7 +112,7 @@ const MenuItem = () => {
                         aria-labelledby='navDropdown-4'
                       >
                         {submenu.map((item) => {
-                          const { id, title, url, submenu } = item
+                          const { id, title, url, submenu } = item;
 
                           if (submenu == undefined) {
                             return (
@@ -126,7 +126,7 @@ const MenuItem = () => {
                                   </span>
                                 </Link>
                               </li>
-                            )
+                            );
                           } else {
                             return (
                               <li
@@ -160,7 +160,7 @@ const MenuItem = () => {
                                   aria-labelledby='navDropdown-4'
                                 >
                                   {submenu.map((item) => {
-                                    const { id, title, url } = item
+                                    const { id, title, url } = item;
                                     return (
                                       <li key={id}>
                                         <Link
@@ -172,16 +172,16 @@ const MenuItem = () => {
                                           </span>
                                         </Link>
                                       </li>
-                                    )
+                                    );
                                   })}
                                 </ul>
                               </li>
-                            )
+                            );
                           }
                         })}
                       </ul>
                     </li>
-                  )
+                  );
                 })}
               </ul>
             </nav>
@@ -193,7 +193,7 @@ const MenuItem = () => {
               className='js-mobile-toggle group ml-2 flex h-10 w-10 items-center justify-center border border-primary bg-primary text-body'
               aria-label='open mobile menu'
               onClick={() => {
-                setOpen((old) => !old)
+                setOpen((old) => !old);
               }}
             >
               <svg
@@ -211,7 +211,7 @@ const MenuItem = () => {
         </div>
       </header>
     </>
-  )
-}
+  );
+};
 
-export default MenuItem
+export default MenuItem;

@@ -1,9 +1,10 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import GlobalLayout from './components/layouts/globalRoutes'
-import Home from './pages/Home'
-import Pages from './pages/Pages'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import GlobalLayout from './components/layouts/globalRoutes';
+import Home from './pages/Home';
+import Pages from './pages/Pages';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import TeachersList from './pages/Teachers';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -15,13 +16,17 @@ const App = () => {
           path: '/',
           element: <Home />,
         },
+        {
+          path: 'page/teachers-list',
+          element: <TeachersList />,
+        },
         { path: 'page/:slug', element: <Pages /> },
       ],
       errorElement: '<div>error</div>',
     },
-  ])
+  ]);
 
-  return <RouterProvider router={router} />
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;

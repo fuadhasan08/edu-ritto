@@ -53,11 +53,11 @@ module.exports = {
     },
 
     fontFamily: {
-      main: ["'Baloo Da 2', cursive"],
+      main: ["'Tiro Bangla', serif"],
       title: ["'Tiro Bangla', serif"],
       eng: ["'Open Sans', sans-serif"],
     },
   },
 
   plugins: [],
-}
+};
