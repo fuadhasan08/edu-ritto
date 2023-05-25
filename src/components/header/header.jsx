@@ -40,12 +40,12 @@ const MenuItem = () => {
       >
         <div className='flex items-center lg:justify-center justify-between border-b border-primary py-4'>
           <div
-            className={`js-mobile-menu invisible lg:visible fixed inset-x-0 top-0 z-10  items-center bg-primary opacity-0 lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent ${
+            className={`js-mobile-menu invisible lg:visible fixed inset-x-0 top-0 z-10  items-center bg-primary opacity-0 lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent h-screen ${
               open ? 'nav-menu--is-open' : ''
             }`}
           >
             {/* nav-menu--is-open */}
-            <div className='t-0 absolute left-0 z-10 flex w-full items-center justify-end bg-primary p-6 lg:hidden'>
+            <div className='t-0 fixed left-0 z-10 flex w-full items-center justify-end bg-primary p-6 lg:hidden'>
               <button
                 className='js-mobile-close group ml-2 flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent'
                 aria-label='close mobile menu'
@@ -187,7 +187,7 @@ const MenuItem = () => {
                   );
                 })}
               </ul>
-              <ul className='flex lg:hidden flex-col lg:flex-row gap-1.5 flex-wrap '>
+              <ul className='flex lg:hidden flex-col lg:flex-row gap-1.5 flex-wrap space-y-2'>
                 {merged.map((item) => {
                   const { id, title, url, submenu } = item;
 
@@ -201,7 +201,7 @@ const MenuItem = () => {
                     <li className='group' key={id}>
                       <Link
                         to={url2}
-                        className='flex items-center justify-between py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
+                        className='flex items-center justify-between lg:py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
                       >
                         {title}
                       </Link>
@@ -210,7 +210,7 @@ const MenuItem = () => {
                     <li className='js-nav-dropdown group relative' key={id}>
                       <Link
                         to={url2}
-                        className='dropdown-toggle flex items-center justify-between py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
+                        className='dropdown-toggle flex items-center justify-between lg:py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
                         id='navDropdown-4'
                         aria-expanded='false'
                         role='button'
