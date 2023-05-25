@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply text-body font-main bg-bodyBg leading-[30.6px] text-lg font-normal;
+    @apply text-body font-main bg-bodyBg leading-[30.6px] text-base md:text-lg font-normal;
   }
 
   h1,
