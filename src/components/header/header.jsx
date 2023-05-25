@@ -26,6 +26,9 @@ const MenuItem = () => {
     };
   }, []);
 
+  const mobileMenu = useFetch(`wp-json/mycustomapi/v1/menu2`);
+  const merged = [...fetchedData, ...mobileMenu];
+
   return (
     <>
       <TopBar />
@@ -42,7 +45,7 @@ const MenuItem = () => {
             }`}
           >
             {/* nav-menu--is-open */}
-            <div className='t-0 fixed left-0 z-10 flex w-full items-center justify-end bg-primary p-6 lg:hidden'>
+            <div className='t-0 absolute left-0 z-10 flex w-full items-center justify-end bg-primary p-6 lg:hidden'>
               <button
                 className='js-mobile-close group ml-2 flex h-10 w-10 items-center justify-center rounded-full border border-jacarta-100 bg-white transition-colors hover:border-transparent hover:bg-accent focus:border-transparent focus:bg-accent dark:border-transparent dark:bg-white/[.15] dark:hover:bg-accent'
                 aria-label='close mobile menu'
@@ -64,8 +67,128 @@ const MenuItem = () => {
             </div>
 
             <nav className='navbar w-full mt-24 mb-8 lg:mt-0 lg:mb-0'>
-              <ul className='flex flex-col lg:flex-row gap-1.5 flex-wrap'>
+              <ul className='flex-col lg:flex-row gap-1.5 flex-wrap hidden lg:flex'>
                 {fetchedData.map((item) => {
+                  const { id, title, url, submenu } = item;
+
+                  let url2 = url;
+
+                  if (url2 == 'page/') {
+                    url2 = '';
+                  }
+
+                  return !submenu && submenu == undefined ? (
+                    <li className='group' key={id}>
+                      <Link
+                        to={url2}
+                        className='flex items-center justify-between py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
+                      >
+                        {title}
+                      </Link>
+                    </li>
+                  ) : (
+                    <li className='js-nav-dropdown group relative' key={id}>
+                      <Link
+                        to={url2}
+                        className='dropdown-toggle flex items-center justify-between py-3 font-display text-white lg:px-6 bg-primary rounded-sm text-base font-medium'
+                        id='navDropdown-4'
+                        aria-expanded='false'
+                        role='button'
+                        data-bs-toggle='dropdown'
+                      >
+                        {title}
+                        <i className='lg:hidden'>
+                          <svg
+                            xmlns='http://www.w3.org/2000/svg'
+                            viewBox='0 0 24 24'
+                            width='24'
+                            height='24'
+                            className='h-4 w-4 dark:fill-white'
+                          >
+                            <path fill='none' d='M0 0h24v24H0z' />
+                            <path d='M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z' />
+                          </svg>
+                        </i>
+                      </Link>
+                      <ul
+                        className='dropdown-menu group-hover:visible lg:invisible left-0 top-[85%] z-10 hidden min-w-[200px] gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover:opacity-100 dark:bg-jacarta-800 lg:absolute lg:grid lg:translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl lg:group-hover:translate-y-2'
+                        aria-labelledby='navDropdown-4'
+                      >
+                        {submenu.map((item) => {
+                          const { id, title, url, submenu } = item;
+
+                          if (submenu == undefined) {
+                            return (
+                              <li key={id}>
+                                <Link
+                                  to={url}
+                                  className='flex items-center rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600'
+                                >
+                                  <span className='font-display text-sm text-body dark:text-body'>
+                                    {title}
+                                  </span>
+                                </Link>
+                              </li>
+                            );
+                          } else {
+                            return (
+                              <li
+                                key={id}
+                                className='js-nav-dropdown group/child relative'
+                              >
+                                <Link
+                                  to={url}
+                                  className='dropdown-toggle flex items-center justify-between py-3.5 font-display text-base text-body hover:text-accent focus:text-accent dark:text-body dark:hover:text-accent dark:focus:text-accent lg:px-5'
+                                  id='navDropdown-4'
+                                  aria-expanded='false'
+                                  role='button'
+                                  data-bs-toggle='dropdown'
+                                >
+                                  {title}
+                                  <i className='lg:hidden'>
+                                    <svg
+                                      xmlns='http://www.w3.org/2000/svg'
+                                      viewBox='0 0 24 24'
+                                      width='24'
+                                      height='24'
+                                      className='h-4 w-4 dark:fill-white'
+                                    >
+                                      <path fill='none' d='M0 0h24v24H0z' />
+                                      <path d='M12 13.172l4.95-4.95 1.414 1.414L12 16 5.636 9.636 7.05 8.222z' />
+                                    </svg>
+                                  </i>
+                                </Link>
+                                <ul
+                                  className='dropdown-menu group-hover/child:visible lg:invisible -left-52 top-0 z-10 hidden min-w-[200px] gap-x-4 whitespace-nowrap rounded-xl bg-white transition-all will-change-transform group-hover/child:opacity-100 dark:bg-jacarta-800 lg:absolute lg:grid lg:translate-y-4 lg:py-4 lg:px-2 lg:opacity-0 lg:shadow-2xl lg:group-hover/child:translate-y-2'
+                                  aria-labelledby='navDropdown-4'
+                                >
+                                  {submenu.map((item) => {
+                                    const { id, title, url } = item;
+                                    return (
+                                      <li key={id}>
+                                        <Link
+                                          to={url}
+                                          className='flex items-center rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600'
+                                        >
+                                          <span className='font-display text-sm text-body dark:text-body'>
+                                            {title}
+                                          </span>
+                                        </Link>
+                                      </li>
+                                    );
+                                  })}
+                                </ul>
+                              </li>
+                            );
+                          }
+                        })}
+                      </ul>
+                    </li>
+                  );
+                })}
+              </ul>
+              <ul className='flex lg:hidden flex-col lg:flex-row gap-1.5 flex-wrap '>
+                {merged.map((item) => {
                   const { id, title, url, submenu } = item;
 
                   let url2 = url;
