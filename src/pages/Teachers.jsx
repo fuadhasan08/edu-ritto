@@ -20,7 +20,7 @@ const TeachersList = () => {
   }, []);
 
   return (
-    <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-10 mb-5 lg:mt-0'>
+    <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-10 mb-5  lg:mt-0'>
       <PageTitle title='শিক্ষকবৃন্দের নামের তালিকা' />
       <div className='overflow-x-auto'>
         <div className='min-w-[850px] lg:min-w-[991px] xl:min-w-full'>
@@ -71,6 +71,9 @@ const TeachersList = () => {
               ))}
             </tbody>
           </table>
+          <p className='text-[red] text-sm my-2 block md:hidden'>
+            Scroll {'>'}
+          </p>
         </div>
       </div>
     </div>
