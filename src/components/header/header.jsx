@@ -40,7 +40,7 @@ const MenuItem = () => {
       >
         <div className='flex items-center lg:justify-center justify-between border-b border-primary py-4'>
           <div
-            className={`js-mobile-menu invisible lg:visible fixed inset-x-0 top-0 z-10  items-center bg-primary opacity-0 lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent h-screen ${
+            className={`js-mobile-menu invisible lg:visible fixed inset-x-0 top-0 z-10  items-center bg-primary opacity-0 lg:relative lg:inset-auto lg:flex lg:bg-transparent lg:opacity-100 dark:lg:bg-transparent ${
               open ? 'nav-menu--is-open' : ''
             }`}
           >
@@ -187,7 +187,9 @@ const MenuItem = () => {
                   );
                 })}
               </ul>
-              <ul className='flex lg:hidden flex-col lg:flex-row gap-1.5 flex-wrap space-y-2'>
+
+              {/* SMALL SCREEN */}
+              <ul className='flex lg:hidden flex-col lg:flex-row gap-1.5 flex-wrap gap-y-3 h-screen'>
                 {merged.map((item) => {
                   const { id, title, url, submenu } = item;
 
@@ -242,7 +244,7 @@ const MenuItem = () => {
                               <li key={id}>
                                 <Link
                                   to={url}
-                                  className='flex items-center rounded-xl px-5 py-2 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600'
+                                  className='flex items-center rounded-xl px-5 py-3 transition-colors hover:bg-jacarta-50 hover:text-accent focus:text-accent dark:hover:bg-jacarta-600'
                                 >
                                   <span className='font-display text-sm text-body dark:text-body'>
                                     {title}
