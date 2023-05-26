@@ -1,21 +1,21 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const useFetch = (url) => {
-  const [fetchedData, setFetchedData] = useState([])
+  const [fetchedData, setFetchedData] = useState([]);
 
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URI}/${url}`)
       .then((res) => {
-        setFetchedData(res.data)
+        setFetchedData(res.data);
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+        console.log(err);
+      });
+  }, []);
 
-  return fetchedData
-}
+  return fetchedData;
+};
 
-export default useFetch
+export default useFetch;

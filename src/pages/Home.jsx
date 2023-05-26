@@ -25,7 +25,7 @@ const Home = () => {
   const slidesData = useSlides();
 
   return (
-    <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-10 lg:mt-0'>
+    <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-5 lg:mt-0'>
       {slidesData && (
         <Slider {...settings} className='cursor-pointer rounded-md'>
           {slidesData?.map((item) => {

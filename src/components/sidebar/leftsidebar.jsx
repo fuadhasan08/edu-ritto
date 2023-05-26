@@ -1,5 +1,5 @@
 import useFetch from '../../hooks/useFetch';
-import { FaSquare } from 'react-icons/fa';
+// import { FaSquare } from 'react-icons/fa';
 
 const LeftSidebar = () => {
   const fetchedData = useFetch(`wp-json/mycustomapi/v1/menu2`);

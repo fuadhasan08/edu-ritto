@@ -1,6 +1,6 @@
 const LogoPanel = () => {
   return (
-    <div className='flex items-center sm:max-h-52 h-full sm:flex-nowrap flex-wrap sm:text-left text-center justify-center sm:justify-start'>
+    <div className='flex items-center sm:max-h-52 h-full sm:flex-nowrap flex-wrap sm:text-left text-center justify-center sm:justify-start border-b border-primary lg:pb-0 pb-8'>
       <img
         src='/assets/akm.png'
         className='h-auto w-full max-w-[200px] text-center p-5'
@@ -16,7 +16,7 @@ const LogoPanel = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LogoPanel
+export default LogoPanel;
