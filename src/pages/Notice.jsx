@@ -195,7 +195,9 @@ const NoticeList = () => {
                     {fortmatDate(notice.notice?.modified)}
                   </td>
                   <td className='px-4 py-2 border border-gray-200'>
-                    <a href={notice.notice?.url}>Download</a>
+                    <a href={notice.notice?.url} target='_blank'>
+                      Download
+                    </a>
                   </td>
                 </tr>
               ))}
