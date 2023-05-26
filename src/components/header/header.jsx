@@ -60,7 +60,7 @@ const Header = () => {
       <TopBar />
       <LogoPanel />
       <header
-        className={`js-page-header z-20 w-full bg-white justify-center transition-all duration-1000 pt-6 pb-3 ${
+        className={`js-page-header z-20 w-full bg-white justify-center transition-all duration-200 pt-6 pb-3 lg:border-b lg:border-primary ${
           sticky ? '!sticky top-0 inset-x-0 border-b border-primary !py-3' : ''
         }`}
       >

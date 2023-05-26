@@ -5,6 +5,7 @@ import Pages from './pages/Pages';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import TeachersList from './pages/Teachers';
+import NoticeList from './pages/Notice';
 
 const App = () => {
   const router = createBrowserRouter([
@@ -19,6 +20,10 @@ const App = () => {
         {
           path: 'page/teachers-list',
           element: <TeachersList />,
+        },
+        {
+          path: 'page/notices',
+          element: <NoticeList />,
         },
         { path: 'page/:slug', element: <Pages /> },
       ],
