@@ -19,7 +19,7 @@ const NoticeList = () => {
   //   .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/teachers`)
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/notices?amount`)
+      .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/notices`)
       .then((response) => {
         setNotices(response.data.sort((a, b) => a.id - b.id));
       })

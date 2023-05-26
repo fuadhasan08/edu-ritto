@@ -1,10 +1,24 @@
-import { FaSquare } from 'react-icons/fa'
-import useFetch from '../../hooks/useFetch'
+import { FaSquare } from 'react-icons/fa';
+import useFetch from '../../hooks/useFetch';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const RightSidebar = () => {
-  const fetchedData = useFetch('wp-json/redux/v1/data')
+  const [notices, setNotices] = useState([]); // Array to store fetched data
+  const fetchedData = useFetch('wp-json/redux/v1/data');
 
-  const { sovapoti, principle, important_links } = fetchedData
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/notices`)
+      .then((response) => {
+        setNotices(response.data.sort((a, b) => b.id - a.id));
+      })
+      .catch((error) => {
+        console.error('Error fetching teacher data:', error);
+      });
+  }, []);
+
+  const { sovapoti, principle, important_links } = fetchedData;
 
   return (
     <div className='px-2 lg:pr-2 lg:pl-0 space-y-5 lg:text-left text-center lg:col-span-2 lg:max-w-[200px] w-full lg:block flex justify-center flex-col'>
@@ -13,32 +27,31 @@ const RightSidebar = () => {
         <h5 className='bg-bgCard py-2 text-center font-bold border-b border-brderCard text-primary'>
           নোটিশ বোর্ড
         </h5>
-        <marquee
+        <ul
           behavior='scroll'
           direction='up'
           scrollamount='2'
           className='space-y-1.5 px-1'
           id='markq'
         >
-          <li className='cursor-pointer bg-bg rounded-sm px-2 py-0.5 flex  gap-x-2 text-sm text-text group'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              ২০২০-২০২১ সেশনে ডিগ্রি পাস ২য় বর্ষের ক্লাস শুরু ও ভর্তি নোটিশ।
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm px-2 py-0.5 flex  gap-x-2 text-sm text-text group'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              ২০২০-২০২১ সেশনে ডিগ্রি পাস ২য় বর্ষের ক্লাস শুরু ও ভর্তি নোটিশ।
-            </a>
-          </li>
-          <li className='cursor-pointer bg-bg rounded-sm px-2 py-0.5 flex  gap-x-2 text-sm text-text group'>
-            <FaSquare className='text-10px mt-1' />
-            <a href='#' className='group-hover:text-primary w-full'>
-              ২০২০-২০২১ সেশনে ডিগ্রি পাস ২য় বর্ষের ক্লাস শুরু ও ভর্তি নোটিশ।
-            </a>
-          </li>
-        </marquee>
+          {notices.slice(0, 3).map((notice, idx) => {
+            return (
+              <li
+                className='cursor-pointer bg-bg rounded-sm px-2 py-3 flex  gap-x-2 text-sm text-text group'
+                key={idx}
+              >
+                <FaSquare className='text-10px mt-1' />
+                <a
+                  href={notice.notice?.url}
+                  target='_blank'
+                  className='group-hover:text-primary w-full'
+                >
+                  {notice.title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
       </div>
       {/* সভাপতি */}
       {sovapoti?.url && (
@@ -113,13 +126,13 @@ const RightSidebar = () => {
           </h5>
           <ul className='space-y-1.5 px-1'>
             {important_links?.map((item, index) => {
-              const inputText = item
+              const inputText = item;
 
-              let title, url
+              let title, url;
 
               if (inputText) {
-                title = inputText.match(/^([^\[]+)/)[1].trim() || ''
-                url = inputText.match(/\[([^]+)\]/)[1].trim() || ''
+                title = inputText.match(/^([^\[]+)/)[1].trim() || '';
+                url = inputText.match(/\[([^]+)\]/)[1].trim() || '';
               }
 
               return (
@@ -136,13 +149,13 @@ const RightSidebar = () => {
                     {title}
                   </a>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default RightSidebar
+export default RightSidebar;
