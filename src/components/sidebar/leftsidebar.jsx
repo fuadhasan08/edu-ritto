@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 // import { FaSquare } from 'react-icons/fa';
 
@@ -15,12 +16,12 @@ const LeftSidebar = () => {
               key={id}
               className='cursor-pointer bg-secondary rounded-sm px-2 py-1.5 group hover:bg-primary transition-all duration-300 flex items-center gap-x-2 text-base text-text font-medium'
             >
-              <a
-                href={`/${url}`}
+              <Link
+                to={`/${url}`}
                 className='group-hover:text-white group-hover:underline w-full'
               >
                 {title}
-              </a>
+              </Link>
             </li>
           );
         })}
