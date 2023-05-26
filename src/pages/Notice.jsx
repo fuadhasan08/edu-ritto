@@ -15,8 +15,6 @@ const NoticeList = () => {
   const [selectedYear, setSelectedYear] = useState(
     `${new Date().getFullYear()}`
   ); // Selected year for filtering
-  const [months, setMonths] = useState([]); // Selected year for filtering
-  const [years, setYears] = useState([]); // Selected year for filtering
 
   //   .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/teachers`)
   useEffect(() => {
@@ -24,13 +22,6 @@ const NoticeList = () => {
       .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/notices?amount`)
       .then((response) => {
         setNotices(response.data.sort((a, b) => a.id - b.id));
-        response.data?.map((item) => {
-          let mr = item.notice.modified.match(/-(\d{2})-/);
-          let yr = item.notice.modified.match(/^(\d{4})-/);
-
-          setMonths([...months, mr]);
-          setYears([...years, yr]);
-        });
       })
       .catch((error) => {
         console.error('Error fetching teacher data:', error);
@@ -186,9 +177,9 @@ const NoticeList = () => {
                   } `}
                 >
                   <td className='px-2 py-2 border border-gray-200'>
-                    {notice.notice?.id}
+                    {notice.id}
                   </td>
-                  <td className='px-4 py-2 border border-gray-200'>
+                  <td className='px-4 py-5 border border-gray-200'>
                     {notice.title}
                   </td>
                   <td className='min-w-[150px] px-4 py-2 border border-gray-200'>
