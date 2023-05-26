@@ -4,55 +4,220 @@ import { useState, useEffect } from 'react';
 import PageTitle from '../components/common/PageTitle';
 
 const NoticeList = () => {
-  const [notices, setNotices] = useState([]);
+  const [notices, setNotices] = useState([]); // Array to store fetched data
+  const [sortBy, setSortBy] = useState('date'); // Default sort by date
+  const [sortOrder, setSortOrder] = useState('asc'); // Default sort order
+  const [currentPage, setCurrentPage] = useState(1); // Current page number
+  const [noticesPerPage] = useState(20); // Number of notices per page
+  const [selectedMonth, setSelectedMonth] = useState(
+    `${new Date().getMonth() + 1}`
+  ); // Selected month for filtering
+  const [selectedYear, setSelectedYear] = useState(
+    `${new Date().getFullYear()}`
+  ); // Selected year for filtering
+  const [months, setMonths] = useState([]); // Selected year for filtering
+  const [years, setYears] = useState([]); // Selected year for filtering
+
   //   .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/teachers`)
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/notices`)
+      .get(`${import.meta.env.VITE_API_URI}wp-json/ritto/v1/notices?amount`)
       .then((response) => {
         setNotices(response.data.sort((a, b) => a.id - b.id));
+        response.data?.map((item) => {
+          let mr = item.notice.modified.match(/-(\d{2})-/);
+          let yr = item.notice.modified.match(/^(\d{4})-/);
+
+          setMonths([...months, mr]);
+          setYears([...years, yr]);
+        });
       })
       .catch((error) => {
         console.error('Error fetching teacher data:', error);
       });
   }, []);
 
+  // Sort by date
+  const sortByDate = () => {
+    setSortBy('date');
+    setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
+  };
+
+  // Sort by specific date range
+  const sortBySpecificDate = (month, year) => {
+    setSortBy('specificDate');
+    setSelectedMonth(month);
+    setSelectedYear(year);
+  };
+
+  // Custom sorting function based on the selected sort option
+  const sortedNotices = () => {
+    let sorted = [...notices];
+
+    if (sortBy === 'date') {
+      sorted.sort((a, b) => {
+        const dateA = new Date(a.notice?.modified);
+        const dateB = new Date(b.notice?.modified);
+
+        if (sortOrder === 'asc') {
+          return dateA - dateB;
+        } else {
+          return dateB - dateA;
+        }
+      });
+    } else if (sortBy === 'specificDate' && selectedMonth && selectedYear) {
+      sorted = sorted.filter((notice) => {
+        const noticeDate = new Date(notice.notice?.modified);
+        const noticeMonth = noticeDate.getMonth() + 1; // Adding 1 because getMonth() returns 0-11
+        const noticeYear = noticeDate.getFullYear();
+
+        return (
+          noticeMonth === parseInt(selectedMonth) &&
+          noticeYear === parseInt(selectedYear)
+        );
+      });
+    }
+
+    return sorted;
+  };
+
+  // Calculate index of the last notice on the current page
+  const indexOfLastNotice = currentPage * noticesPerPage;
+  // Calculate index of the first notice on the current page
+  const indexOfFirstNotice = indexOfLastNotice - noticesPerPage;
+  // Get the current notices for the current page
+  const currentNotices = sortedNotices().slice(
+    indexOfFirstNotice,
+    indexOfLastNotice
+  );
+
+  const fortmatDate = (str) => {
+    const monthName = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+
+    const date = new Date(str);
+
+    const year = date.getFullYear();
+    const month = monthName[date.getMonth()];
+    const day = date.getDate();
+
+    return `${day} ${month}, ${year}`;
+  };
+
   return (
     <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-10 mb-5  lg:mt-0'>
       <PageTitle title='নোটিশ বোর্ড' />
       <div className='overflow-x-auto'>
         <div className='min-w-[850px] lg:min-w-[991px] xl:min-w-full'>
+          <div>
+            <select
+              value={selectedYear}
+              onChange={(e) => setSelectedYear(e.target.value)}
+            >
+              <option value='' disabled>
+                Select Year
+              </option>
+              <option value='2022'>2022</option>
+              <option value='2023'>2023</option>
+              <option value='2024'>2024</option>
+            </select>
+
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+            >
+              <option value='' disabled>
+                Select Month
+              </option>
+              <option value='1'>January</option>
+              <option value='2'>February</option>
+              <option value='3'>March</option>
+              <option value='4'>April</option>
+              <option value='5'>May</option>
+              <option value='6'>June</option>
+              <option value='7'>July</option>
+              <option value='8'>August</option>
+              <option value='9'>September</option>
+              <option value='10'>October</option>
+              <option value='11'>November</option>
+              <option value='12'>December</option>
+            </select>
+            <button
+              onClick={() => sortBySpecificDate(selectedMonth, selectedYear)}
+            >
+              Filter
+            </button>
+          </div>
+
           <table className='w-full border-collapse'>
             <thead>
               <tr className='text-left'>
-                <th className='px-4 py-2 border border-gray-200'>ক্রমিক নং</th>
+                <th className='px-2 py-2 border border-gray-200'> নং</th>
                 <th className='px-4 py-2 border border-gray-200'>শিরোনাম</th>
-                <th className='px-4 py-2 border border-gray-200'>তারিখ</th>
+                <th
+                  className={`min-w-[150px] px-4 py-2 border border-gray-200 cursor-pointer ${
+                    sortBy === 'date' ? 'font-bold' : ''
+                  }`}
+                  onClick={sortByDate}
+                >
+                  তারিখ {sortOrder === 'asc' ? '↑' : '↓'}
+                </th>
                 <th className='px-4 py-2 border border-gray-200'>ডাউনলোড</th>
               </tr>
             </thead>
             <tbody>
-              {notices.map((notice, index) => (
+              {currentNotices.map((notice, index) => (
                 <tr
                   key={index}
-                  className={`${index % 2 === 0 ? 'bg-gray-100' : 'bg-white'} `}
+                  className={`  ${
+                    index % 2 === 0 ? 'bg-gray-100' : 'bg-white'
+                  } `}
                 >
-                  <td className='px-4 py-2 border border-gray-200'>
-                    {index + 1}
+                  <td className='px-2 py-2 border border-gray-200'>
+                    {notice.notice?.id}
                   </td>
                   <td className='px-4 py-2 border border-gray-200'>
                     {notice.title}
                   </td>
-                  <td className='px-4 py-2 border border-gray-200'>
-                    {notice.notice?.modified}
+                  <td className='min-w-[150px] px-4 py-2 border border-gray-200'>
+                    {fortmatDate(notice.notice?.modified)}
                   </td>
                   <td className='px-4 py-2 border border-gray-200'>
-                    {notice.notice?.id}
+                    <a href={notice.notice?.url}>Download</a>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
+
+          <div>
+            {/* Pagination */}
+            <p>CurrPage:{currentPage}</p>
+            <button
+              onClick={() => setCurrentPage((prevPage) => prevPage - 1)}
+              disabled={currentPage === 1}
+            >
+              Previous
+            </button>
+            <button
+              onClick={() => setCurrentPage((prevPage) => prevPage + 1)}
+              disabled={indexOfLastNotice >= sortedNotices().length}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>
