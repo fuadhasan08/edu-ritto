@@ -215,9 +215,12 @@ const NoticeList = () => {
             {paginationArray.map((item, idx) => {
               return (
                 <p
-                  className={`px-4 py-3 bg-gray-100 border-r border-gray-400 ${
+                  className={`px-4 py-3 bg-gray-100 border-r border-gray-400 cursor-pointer ${
                     currentPage === idx + 1 ? 'bg-primary text-white' : ''
                   }`}
+                  onClick={() => {
+                    setCurrentPage(idx + 1);
+                  }}
                   key={idx}
                 >
                   <span>{idx + 1}</span>
