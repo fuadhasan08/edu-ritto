@@ -8,7 +8,7 @@ const NoticeList = () => {
   const [sortBy, setSortBy] = useState('date'); // Default sort by date
   const [sortOrder, setSortOrder] = useState('dsc'); // Default sort order
   const [currentPage, setCurrentPage] = useState(1); // Current page number
-  const [noticesPerPage] = useState(15); // Number of notices per page
+  const [noticesPerPage] = useState(5); // Number of notices per page
   const [selectedMonth, setSelectedMonth] = useState(
     `${new Date().getMonth() + 1}`
   ); // Selected month for filtering
