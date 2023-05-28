@@ -60,7 +60,7 @@ const RightSidebar = () => {
             সভাপতি
           </h5>
 
-          <div className='grid lg:h-[240px] lg:max-w-[190px] overflow-hidden justify-center lg:justify-start'>
+          <div className='grid lg:h-auto lg:max-w-[190px] overflow-hidden justify-center lg:justify-start'>
             <img
               src={sovapoti?.url}
               alt='vice principle'
@@ -76,7 +76,7 @@ const RightSidebar = () => {
             অধ্যক্ষ
           </h5>
 
-          <div className='grid lg:h-[240px] lg:max-w-[190px] overflow-hidden justify-center lg:justify-start'>
+          <div className='grid lg:h-auto lg:max-w-[190px] overflow-hidden justify-center lg:justify-start'>
             <img
               src={principle.url}
               alt='principle'

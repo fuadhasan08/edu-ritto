@@ -100,6 +100,11 @@ const Header = () => {
 
                   <MenuWithChildren key={id} submenu={submenu} />;
                 })}
+                <MenuSingleItem
+                  url='https://demo.ritto360.com/eduritto/wp-admin/'
+                  title='এডমিন লগিন'
+                />
+                ;
               </ul>
             </div>
           </div>
