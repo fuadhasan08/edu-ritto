@@ -104,7 +104,6 @@ const Header = () => {
                   url='https://demo.ritto360.com/eduritto/wp-admin/'
                   title='এডমিন লগিন'
                 />
-                ;
               </ul>
             </div>
           </div>
