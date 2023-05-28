@@ -13,7 +13,7 @@ const Pages = () => {
   const pageData = filteredfetchedData.find((item) => item.slug === slug);
 
   return (
-    <div className='flex-1 lg:col-span-8'>
+    <div className='px-2 lg:px-0 flex-1 lg:col-span-8 mt-5 lg:mt-0'>
       <PageTitle title={pageData?.title?.rendered} />
       <div
         dangerouslySetInnerHTML={{ __html: pageData?.content?.rendered }}
