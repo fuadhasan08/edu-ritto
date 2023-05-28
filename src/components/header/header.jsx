@@ -92,6 +92,8 @@ const Header = () => {
 
                   if (url2 == 'page/') {
                     url2 = '';
+                  } else if (url2 == 'page/home') {
+                    url2 = '/';
                   }
 
                   if (!submenu && submenu === undefined) {

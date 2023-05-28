@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useMemo } from 'react';
 
 const useFetch = (url) => {
   const [fetchedData, setFetchedData] = useState([]);
